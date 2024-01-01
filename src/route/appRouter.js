@@ -1,16 +1,20 @@
 import { createBrowserRouter } from "react-router-dom";
-import App from "../components/layout/App";
+import Watch from "../components/watch-container/Watch";
 import Body from "../components/layout/Body";
 import Subscriptions from "../components/sidebar/Subscriptions";
-
-const router = createBrowserRouter([
+import MainContainer from "../components/main-container/MainContainer";
+const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: <Body />,
     children: [
       {
         path: "/",
-        element: <Body />,
+        element: <MainContainer />,
+      },
+      {
+        path: "/watch",
+        element: <Watch />,
       },
       {
         path: "/subscriptions",
@@ -19,4 +23,4 @@ const router = createBrowserRouter([
     ],
   },
 ]);
-export default router;
+export default appRouter;

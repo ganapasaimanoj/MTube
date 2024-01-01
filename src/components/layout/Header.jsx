@@ -8,18 +8,28 @@ import {
   VideoCamera,
 } from "@phosphor-icons/react/dist/ssr";
 import { useState } from "react";
+import { useDispatch } from "react-redux";
+import { toggleMenu } from "../../redux/appSlice";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [input, setInput] = useState("");
+  const dispatch = useDispatch();
+
+  const handleMenuToggle = () => {
+    dispatch(toggleMenu());
+  };
   return (
-    <header className='header flex justify-between px-5 py-4'>
-      <section className='left flex gap-3 items-center '>
-        <List size={24} color={"#1a1a1a"} />
-        <div className='max-w-36'>
-          <img src='../../assets/mocktube.png' className='w-full' alt='logo' />
+    <header className='w-full header flex justify-between px-5 pt-2 pb-4 '>
+      <section className='left flex gap-5 items-center '>
+        <div className='cursor-pointer' onClick={handleMenuToggle}>
+          <List size={24} color={"#1a1a1a"} />
         </div>
+        <Link to='/' className='w-[8.5rem]'>
+          <img src='assets/mocktube.png' className='w-full' alt='logo' />
+        </Link>
       </section>
-      <section className='search flex gap-3 w-[42%]'>
+      <section className='search flex gap-3 w-[48%]'>
         <div className='input-feild flex  rounded-full w-full '>
           <div className='relative w-full rounded-l-full'>
             <input

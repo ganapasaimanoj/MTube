@@ -72,7 +72,7 @@ export const SIDE_NAV = [
         title: "Podcasts",
       },
       {
-        id: "",
+        id: 5309,
         icon_stroke: "assets/icons/learning.svg",
         icon_fill: "assets/icons/learning-fill.svg",
         route: "/learning",
@@ -81,3 +81,17 @@ export const SIDE_NAV = [
     ],
   },
 ];
+
+const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
+const OPENCAGE_API_KEY = process.env.REACT_APP_OPENCAGE_API_KEY;
+
+export const GET_VIDEOS_API_URL = (countryCode) => {
+  return `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=${countryCode}&key=${API_KEY}`;
+};
+export const GET_VIDEO_BY_ID_URL = (id) => {
+  return `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=${API_KEY}`;
+};
+
+export const GET_OPENCAGE_API_URL = (latitude, longitude) => {
+  return `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${OPENCAGE_API_KEY}`;
+};
