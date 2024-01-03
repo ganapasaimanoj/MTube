@@ -1,3 +1,26 @@
+const YOUTUBE_API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
+const OPENCAGE_API_KEY = process.env.REACT_APP_OPENCAGE_API_KEY;
+
+const YOUTUBE_BASEURL = (type) =>
+  `https://youtube.googleapis.com/youtube/v3/${type}?part=snippet%2CcontentDetails%2Cstatistics&`;
+export const TITLE_MAX_LENGTH = 57;
+
+export const GET_OPENCAGE_API_URL = (latitude, longitude) => {
+  return `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${OPENCAGE_API_KEY}`;
+};
+export const GET_VIDEOS_API_URL = (countryCode) => {
+  return (
+    YOUTUBE_BASEURL("videos") +
+    `chart=mostPopular&maxResults=50&regionCode=${countryCode}&key=${YOUTUBE_API_KEY}`
+  );
+};
+export const GET_VIDEO_BY_ID_URL = (id) => {
+  return YOUTUBE_BASEURL("videos") + `id=${id}&key=${YOUTUBE_API_KEY}`;
+};
+
+export const GET_SUBSCRIBER_API_URL = (id) => {
+  return YOUTUBE_BASEURL("channels") + `id=${id}&key=${YOUTUBE_API_KEY}`;
+};
 export const SIDE_NAV = [
   {
     heading: null,
@@ -81,17 +104,3 @@ export const SIDE_NAV = [
     ],
   },
 ];
-
-const API_KEY = process.env.REACT_APP_YOUTUBE_API_KEY;
-const OPENCAGE_API_KEY = process.env.REACT_APP_OPENCAGE_API_KEY;
-
-export const GET_VIDEOS_API_URL = (countryCode) => {
-  return `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&chart=mostPopular&maxResults=50&regionCode=${countryCode}&key=${API_KEY}`;
-};
-export const GET_VIDEO_BY_ID_URL = (id) => {
-  return `https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=${id}&key=${API_KEY}`;
-};
-
-export const GET_OPENCAGE_API_URL = (latitude, longitude) => {
-  return `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${OPENCAGE_API_KEY}`;
-};

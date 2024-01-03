@@ -5,29 +5,33 @@ import { useSearchParams } from "react-router-dom";
 import getVideoById from "../../utils/custom-hooks/getVideoById";
 import WatchLeft from "./WatchLeft";
 import WatchRight from "./WatchRight";
+import { setHomePage } from "../../redux/homePageSlice";
 
 const Watch = () => {
   const dispatch = useDispatch();
   const [searchParam] = useSearchParams();
   const [videoData, setVideoData] = useState(null);
   const id = searchParam.get("v");
+
   useEffect(() => {
+    dispatch(closeMenu());
     const getVideoData = async () => {
+      dispatch(setHomePage(false));
       const data = await getVideoById(id);
       setVideoData(data);
     };
     if (!videoData) getVideoData();
-    dispatch(closeMenu());
   }, []);
   if (!videoData) return;
-  console.log(videoData);
+
   return (
-    <div className='w-[85%] grid grid-cols-[2fr,_1fr] py-4 mx-auto'>
-      <WatchLeft {...videoData} />
-      <WatchRight />
+    <div className='h-[100dvh] overflow-auto pb-24'>
+      <div className='w-[91%] mx-auto grid grid-cols-[3fr,_2fr] gap-6 py-4 '>
+        <WatchLeft {...videoData} />
+        <WatchRight currentId={id} />
+      </div>
     </div>
   );
 };
 
 export default Watch;
-/* https://youtube.googleapis.com/youtube/v3/videos?part=snippet%2CcontentDetails%2Cstatistics&id=Ks-_Mh1QhMc&key=[YOUR_API_KEY] */

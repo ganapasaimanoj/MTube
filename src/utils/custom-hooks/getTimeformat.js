@@ -1,4 +1,4 @@
-const getTimeformat = (dateString) => {
+const getTimeformat = (dateString, format) => {
   const currentDate = new Date();
   const inputDate = new Date(dateString);
   const timeDifference = currentDate - inputDate;
@@ -9,22 +9,29 @@ const getTimeformat = (dateString) => {
   const months = Math.floor(days / 30);
   const years = Math.floor(months / 12);
 
+  const options = { day: "numeric", month: "short", year: "numeric" };
+  const userLocale = navigator.language || navigator.userLanguage;
+  const formattedDate = inputDate.toLocaleDateString(userLocale, options);
+
   const getTimeUnit = (value, unit) =>
     `${value} ${unit}${value === 1 ? "" : "s"} ago`;
 
-  if (years > 0) {
-    return getTimeUnit(years, "year");
-  } else if (months > 0) {
-    return getTimeUnit(months, "month");
-  } else if (days > 0) {
-    return days === 1 ? "Yesterday" : getTimeUnit(days, "day");
-  } else if (hours > 0) {
-    return getTimeUnit(hours, "hour");
-  } else if (minutes > 0) {
-    return getTimeUnit(minutes, "minute");
-  } else {
-    return "Just now";
+  if (format === "days") {
+    if (years > 0) {
+      return getTimeUnit(years, "year");
+    } else if (months > 0) {
+      return getTimeUnit(months, "month");
+    } else if (days > 0) {
+      return days === 1 ? "Yesterday" : getTimeUnit(days, "day");
+    } else if (hours > 0) {
+      return getTimeUnit(hours, "hour");
+    } else if (minutes > 0) {
+      return getTimeUnit(minutes, "minute");
+    } else {
+      return "Just now";
+    }
   }
+  return formattedDate;
 };
 
 export default getTimeformat;

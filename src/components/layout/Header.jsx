@@ -7,23 +7,40 @@ import {
   Bell,
   VideoCamera,
 } from "@phosphor-icons/react/dist/ssr";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../../redux/appSlice";
 import { Link } from "react-router-dom";
-
+import { GET_VIDEOS_API_URL } from "../../utils/constants";
+import { setHomePageData } from "../../redux/homePageSlice";
 const Header = () => {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
-
+  const countryCode = useSelector((store) => store.app.countryCode) || "IN";
+  const videos = useSelector((store) => store.homePage.homePageData);
   const handleMenuToggle = () => {
     dispatch(toggleMenu());
   };
+  useEffect(() => {
+    const getVideos = async () => {
+      try {
+        const videosURL = GET_VIDEOS_API_URL(countryCode);
+        const res = await fetch(videosURL);
+        const data = await res.json();
+
+        dispatch(setHomePageData(data?.items));
+      } catch (e) {
+        console.error(e.message);
+      }
+    };
+    videos.length === 0 && getVideos();
+  }, []);
+
   return (
     <header className='w-full header flex justify-between px-5 pt-2 pb-4 '>
       <section className='left flex gap-5 items-center '>
         <div className='cursor-pointer' onClick={handleMenuToggle}>
-          <List size={24} color={"#1a1a1a"} />
+          <List size={24} weight={"thin"} color={"#1a1a1a"} />
         </div>
         <Link to='/' className='w-[8.5rem]'>
           <img src='assets/mocktube.png' className='w-full' alt='logo' />
