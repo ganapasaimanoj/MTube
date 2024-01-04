@@ -20,7 +20,7 @@ const WatchVideoDescription = ({ items }) => {
       }
     };
     if (!channelData) getSubscriberCount();
-  }, []);
+  }, [channelData, channelId]);
   if (!channelData) return;
 
   return (
