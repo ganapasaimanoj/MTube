@@ -1,9 +1,10 @@
 import { createSlice } from "@reduxjs/toolkit";
-const homePageSlice = createSlice({
-  name: "homePage",
+const videosSlice = createSlice({
+  name: "videos",
   initialState: {
     isHomePage: true,
     homePageData: [],
+    watchVideo: null,
   },
   reducers: {
     setHomePage(state, action) {
@@ -12,7 +13,11 @@ const homePageSlice = createSlice({
     setHomePageData(state, action) {
       state.homePageData = [...state.homePageData, ...action.payload];
     },
+    setWatchVideo(state, action) {
+      state.watchVideo = { ...action.payload };
+    },
   },
 });
-export const { setHomePage, setHomePageData } = homePageSlice.actions;
-export default homePageSlice.reducer;
+export const { setHomePage, setHomePageData, setWatchVideo } =
+  videosSlice.actions;
+export default videosSlice.reducer;

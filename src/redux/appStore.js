@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import appSliceReducer from "./appSlice";
-import homePageSliceReducer from "./homePageSlice";
+import videoSliceReducer from "./videosSlice";
 const appStore = configureStore({
-  reducer: { app: appSliceReducer, homePage: homePageSliceReducer },
+  reducer: { app: appSliceReducer, videos: videoSliceReducer },
 });
 export default appStore;

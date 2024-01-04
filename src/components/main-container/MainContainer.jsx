@@ -1,6 +1,6 @@
 import { useState } from "react";
 import VideosContainer from "./VideosContainer";
-import { setHomePage } from "../../redux/homePageSlice";
+import { setHomePage } from "../../redux/videosSlice";
 import { useDispatch } from "react-redux";
 const MainContainer = () => {
   const dispatch = useDispatch();

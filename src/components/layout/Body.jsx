@@ -14,7 +14,7 @@ const Body = () => {
       if (!countryCode) dispatch(setCountryCode(code));
     };
     getCode();
-  }, []);
+  }, [countryCode, dispatch]);
   return (
     <>
       <Header />

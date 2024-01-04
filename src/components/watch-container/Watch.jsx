@@ -1,27 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { useDispatch } from "react-redux";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { closeMenu } from "../../redux/appSlice";
 import { useSearchParams } from "react-router-dom";
 import getVideoById from "../../utils/custom-hooks/getVideoById";
 import WatchLeft from "./WatchLeft";
 import WatchRight from "./WatchRight";
-import { setHomePage } from "../../redux/homePageSlice";
+import { setHomePage, setWatchVideo } from "../../redux/videosSlice";
 
 const Watch = () => {
   const dispatch = useDispatch();
   const [searchParam] = useSearchParams();
-  const [videoData, setVideoData] = useState(null);
   const id = searchParam.get("v");
+  const videoData = useSelector((store) => store.videos.watchVideo);
 
   useEffect(() => {
     dispatch(closeMenu());
+    dispatch(setHomePage(false));
     const getVideoData = async () => {
-      dispatch(setHomePage(false));
       const data = await getVideoById(id);
-      setVideoData(data);
+      dispatch(setWatchVideo(data));
     };
-    if (!videoData) getVideoData();
-  }, []);
+
+    getVideoData();
+  }, [id, dispatch]);
   if (!videoData) return;
 
   return (

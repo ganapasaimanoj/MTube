@@ -3,7 +3,7 @@ const OPENCAGE_API_KEY = process.env.REACT_APP_OPENCAGE_API_KEY;
 
 const YOUTUBE_BASEURL = (type) =>
   `https://youtube.googleapis.com/youtube/v3/${type}?part=snippet%2CcontentDetails%2Cstatistics&`;
-export const TITLE_MAX_LENGTH = 57;
+export const TITLE_MAX_LENGTH = 55;
 
 export const GET_OPENCAGE_API_URL = (latitude, longitude) => {
   return `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${OPENCAGE_API_KEY}`;

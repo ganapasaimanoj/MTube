@@ -4,7 +4,7 @@ import VideoCard from "../main-container/VideoCard";
 /* import { useEffect, useState } from "react"; */
 const WatchRight = ({ currentId }) => {
   /* const [sideContainer, setSideContainer] = useState(null); */
-  const videosData = useSelector((store) => store.homePage.homePageData);
+  const videosData = useSelector((store) => store.videos.homePageData);
   const filteredData = videosData
     .filter((video) => video.id !== currentId)
     .slice(0, 20);

@@ -1,5 +1,3 @@
-import Header from "./Header";
-
 import appRouter from "../../route/appRouter";
 import { RouterProvider } from "react-router-dom";
 function App() {

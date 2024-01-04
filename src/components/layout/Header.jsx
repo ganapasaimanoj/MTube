@@ -12,19 +12,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../../redux/appSlice";
 import { Link } from "react-router-dom";
 import { GET_VIDEOS_API_URL } from "../../utils/constants";
-import { setHomePageData } from "../../redux/homePageSlice";
+import { setHomePageData } from "../../redux/videosSlice";
 const Header = () => {
   const [input, setInput] = useState("");
   const dispatch = useDispatch();
-  const countryCode = useSelector((store) => store.app.countryCode) || "IN";
-  const videos = useSelector((store) => store.homePage.homePageData);
+  const countryCode = useSelector((store) => store.app.countryCode);
+  const videos = useSelector((store) => store.videos.homePageData);
   const handleMenuToggle = () => {
     dispatch(toggleMenu());
   };
   useEffect(() => {
     const getVideos = async () => {
       try {
-        const videosURL = GET_VIDEOS_API_URL(countryCode);
+        const videosURL = GET_VIDEOS_API_URL(countryCode || "IN");
         const res = await fetch(videosURL);
         const data = await res.json();
 
@@ -34,7 +34,7 @@ const Header = () => {
       }
     };
     videos.length === 0 && getVideos();
-  }, []);
+  }, [countryCode, dispatch, videos.length]);
 
   return (
     <header className='w-full header flex justify-between px-5 pt-2 pb-4 '>

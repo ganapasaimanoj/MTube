@@ -1,11 +1,11 @@
 import VideoCard from "./VideoCard";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Shimmer from "../layout/Shimmer";
 import { Link } from "react-router-dom";
 
 const VideosContainer = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
-  const videos = useSelector((store) => store.homePage.homePageData);
+  const videos = useSelector((store) => store.videos.homePageData);
 
   if (!videos) return <Shimmer />;
   return (
