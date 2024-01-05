@@ -7,7 +7,7 @@ const YOUTUBE_BASEURL = (type) =>
 export const TITLE_MAX_LENGTH = 55;
 
 export const SEARCH_URL = (query) =>
-  `http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=${query}`;
+  `https://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=${query}`;
 
 export const GET_OPENCAGE_API_URL = (latitude, longitude) =>
   `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${OPENCAGE_API_KEY}`;
