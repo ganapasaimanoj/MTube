@@ -3,24 +3,25 @@ const OPENCAGE_API_KEY = process.env.REACT_APP_OPENCAGE_API_KEY;
 
 const YOUTUBE_BASEURL = (type) =>
   `https://youtube.googleapis.com/youtube/v3/${type}?part=snippet%2CcontentDetails%2Cstatistics&`;
+
 export const TITLE_MAX_LENGTH = 55;
 
-export const GET_OPENCAGE_API_URL = (latitude, longitude) => {
-  return `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${OPENCAGE_API_KEY}`;
-};
-export const GET_VIDEOS_API_URL = (countryCode) => {
-  return (
-    YOUTUBE_BASEURL("videos") +
-    `chart=mostPopular&maxResults=50&regionCode=${countryCode}&key=${YOUTUBE_API_KEY}`
-  );
-};
-export const GET_VIDEO_BY_ID_URL = (id) => {
-  return YOUTUBE_BASEURL("videos") + `id=${id}&key=${YOUTUBE_API_KEY}`;
-};
+export const SEARCH_URL = (query) =>
+  `http://suggestqueries.google.com/complete/search?client=firefox&ds=yt&q=${query}`;
 
-export const GET_SUBSCRIBER_API_URL = (id) => {
-  return YOUTUBE_BASEURL("channels") + `id=${id}&key=${YOUTUBE_API_KEY}`;
-};
+export const GET_OPENCAGE_API_URL = (latitude, longitude) =>
+  `https://api.opencagedata.com/geocode/v1/json?q=${latitude}+${longitude}&key=${OPENCAGE_API_KEY}`;
+
+export const GET_VIDEOS_API_URL = (countryCode) =>
+  YOUTUBE_BASEURL("videos") +
+  `chart=mostPopular&maxResults=50&regionCode=${countryCode}&key=${YOUTUBE_API_KEY}`;
+
+export const GET_VIDEO_BY_ID_URL = (id) =>
+  YOUTUBE_BASEURL("videos") + `id=${id}&key=${YOUTUBE_API_KEY}`;
+
+export const GET_SUBSCRIBER_API_URL = (id) =>
+  YOUTUBE_BASEURL("channels") + `id=${id}&key=${YOUTUBE_API_KEY}`;
+
 export const SIDE_NAV = [
   {
     heading: null,

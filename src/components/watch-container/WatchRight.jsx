@@ -1,16 +1,13 @@
 import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import VideoCard from "../main-container/VideoCard";
-/* import { useEffect, useState } from "react"; */
+
 const WatchRight = ({ currentId }) => {
-  /* const [sideContainer, setSideContainer] = useState(null); */
   const videosData = useSelector((store) => store.videos.homePageData);
   const filteredData = videosData
     .filter((video) => video.id !== currentId)
     .slice(0, 20);
-  /*   useEffect(() => {
-    setSideContainer(filteredData);
-  }, [filteredData]); */
+
   if (!filteredData) return;
   return (
     <div className='side-video-container w-full flex flex-col gap-3 px-3'>

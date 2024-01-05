@@ -22,7 +22,7 @@ const VideoCard = ({ info }) => {
       channelTitle,
       publishedAt,
       title,
-      thumbnails: { standard, medium },
+      thumbnails: { standard = "", high = "", medium = "" },
     },
     statistics: { viewCount },
   } = info;
@@ -30,6 +30,7 @@ const VideoCard = ({ info }) => {
   const dateTime = getTimeformat(publishedAt, "days");
   const views = getStatsCount(viewCount, "views");
   const videoDuration = getDuration(duration);
+  const homePageURL = standard?.url || medium?.url || high?.url;
   const titleTrim = !isHomePage
     ? getTextTrim(title, 0, TITLE_MAX_LENGTH)
     : getTextTrim(title, 0, 73);
@@ -55,7 +56,7 @@ const VideoCard = ({ info }) => {
         }  overflow-hidden relative`}>
         <img
           className='w-full h-full object-cover'
-          src={isHomePage ? standard?.url : medium?.url}
+          src={isHomePage ? homePageURL : medium?.url}
           alt={title}
         />
         <div className='absolute right-2 bottom-1 rounded-md bg-[#000000d3] px-2 py-[2px] '>

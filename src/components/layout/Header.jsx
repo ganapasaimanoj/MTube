@@ -11,30 +11,52 @@ import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { toggleMenu } from "../../redux/appSlice";
 import { Link } from "react-router-dom";
-import { GET_VIDEOS_API_URL } from "../../utils/constants";
+import { GET_VIDEOS_API_URL, SEARCH_URL } from "../../utils/constants";
 import { setHomePageData } from "../../redux/videosSlice";
 const Header = () => {
   const [input, setInput] = useState("");
+  const [searchSuggestions, setSearchSuggestions] = useState([]);
   const dispatch = useDispatch();
   const countryCode = useSelector((store) => store.app.countryCode);
   const videos = useSelector((store) => store.videos.homePageData);
+
   const handleMenuToggle = () => {
     dispatch(toggleMenu());
   };
-  useEffect(() => {
-    const getVideos = async () => {
-      try {
-        const videosURL = GET_VIDEOS_API_URL(countryCode || "IN");
-        const res = await fetch(videosURL);
-        const data = await res.json();
 
-        dispatch(setHomePageData(data?.items));
-      } catch (e) {
-        console.error(e.message);
-      }
-    };
+  const getVideos = async () => {
+    try {
+      const videosURL = GET_VIDEOS_API_URL(countryCode || "IN");
+      const res = await fetch(videosURL);
+      const data = await res.json();
+
+      dispatch(setHomePageData(data?.items));
+    } catch (e) {
+      console.error(e.message);
+    }
+  };
+  const getSearchSuggestions = async () => {
+    try {
+      const res = await fetch(SEARCH_URL(input));
+      const data = await res.json();
+      setSearchSuggestions(data[1]);
+    } catch (e) {
+      console.error(e.message);
+    }
+  };
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      getSearchSuggestions();
+    }, 200);
     videos.length === 0 && getVideos();
-  }, [countryCode, dispatch, videos.length]);
+    const documentClick = document.addEventListener("click", () => {
+      searchSuggestions.length !== 0 && setInput("");
+    });
+    return () => {
+      clearTimeout(timer);
+      document.removeEventListener("click", documentClick);
+    };
+  }, [input, videos.length]);
 
   return (
     <header className='w-full header flex justify-between px-5 pt-2 pb-4 '>
@@ -46,7 +68,7 @@ const Header = () => {
           <img src='assets/mocktube.png' className='w-full' alt='logo' />
         </Link>
       </section>
-      <section className='search flex gap-3 w-[48%]'>
+      <section className='relative search flex gap-3 w-[48%]'>
         <div className='input-feild flex  rounded-full w-full '>
           <div className='relative w-full rounded-l-full'>
             <input
@@ -56,6 +78,7 @@ const Header = () => {
               placeholder='Search'
               className='py-[0.4rem] inline-flex w-full border border-r-0 border-gray-200 px-5 rounded-l-full placeholder:text-base focus:outline-none focus:ring-2 focus:border-sky-500'
             />
+
             {input && (
               <div
                 className='absolute right-2 top-[0.57rem] cursor-pointer'
@@ -71,6 +94,36 @@ const Header = () => {
         <button className='px-[10px] py-2 flex items-center justify-center rounded-full bg-[#605b5b17] hover:bg-[#817f7f2d]'>
           <Microphone size={22} color={"#1a1a1a"} />
         </button>
+        {input && (
+          <div className='w-[32rem] absolute top-10 mt-1 pt-4 pb-6 bg-white rounded-lg z-10 shadow-[0px_2px_8px_-4px_rgba(0,0,0,0.59)]'>
+            {searchSuggestions.length === 0 ? (
+              <h2 className='text-center font-semibold text-black/65'>
+                No suggestions found
+              </h2>
+            ) : (
+              <ul className='flex flex-col'>
+                {searchSuggestions.map((result) => {
+                  return (
+                    <li
+                      key={result}
+                      className='flex items-center gap-[14px] py-1 px-5 hover:bg-stone-200'>
+                      <MagnifyingGlass
+                        size={18}
+                        color={"rgb(92 92 92 / 93%)"}
+                      />
+                      <p className='text-black/90 font-medium'>
+                        <span className='font-normal text-black/75'>
+                          {result.charAt(0)}
+                        </span>
+                        {result.slice(1)}
+                      </p>
+                    </li>
+                  );
+                })}
+              </ul>
+            )}
+          </div>
+        )}{" "}
       </section>
       <section className='right flex gap-7 items-center flex-row-reverse justify-end pr-3'>
         <div className='p-2 flex items-center justify-center rounded-full bg-[#6d6b6b]'>
