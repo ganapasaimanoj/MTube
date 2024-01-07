@@ -13,12 +13,15 @@ import { toggleMenu } from "../../redux/appSlice";
 import { Link } from "react-router-dom";
 import { GET_VIDEOS_API_URL, SEARCH_URL } from "../../utils/constants";
 import { setHomePageData } from "../../redux/videosSlice";
+import { setCacheResults } from "../../redux/searchCacheSlice";
+import getSearchQueryFormat from "../../utils/custom-hooks/getSearchQueryFormat";
 const Header = () => {
   const [input, setInput] = useState("");
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const dispatch = useDispatch();
   const countryCode = useSelector((store) => store.app.countryCode);
   const videos = useSelector((store) => store.videos.homePageData);
+  const searchCache = useSelector((store) => store.searchCache);
 
   const handleMenuToggle = () => {
     dispatch(toggleMenu());
@@ -40,13 +43,16 @@ const Header = () => {
       const res = await fetch(SEARCH_URL(input));
       const data = await res.json();
       setSearchSuggestions(data[1]);
+      dispatch(setCacheResults({ [input]: data[1] }));
     } catch (e) {
       console.error(e.message);
     }
   };
   useEffect(() => {
     const timer = setTimeout(() => {
-      getSearchSuggestions();
+      searchCache[input]
+        ? setSearchSuggestions(searchCache[input])
+        : getSearchSuggestions();
     }, 200);
     videos.length === 0 && getVideos();
     const documentClick = document.addEventListener("click", () => {
@@ -75,6 +81,7 @@ const Header = () => {
               value={input}
               onChange={(e) => setInput(e.target.value)}
               type='text'
+              spellCheck={true}
               placeholder='Search'
               className='py-[0.4rem] inline-flex w-full border border-r-0 border-gray-200 px-5 rounded-l-full placeholder:text-base focus:outline-none focus:ring-2 focus:border-sky-500'
             />
@@ -102,21 +109,27 @@ const Header = () => {
               </h2>
             ) : (
               <ul className='flex flex-col'>
-                {searchSuggestions.map((result) => {
+                {searchSuggestions.map((result, i, arr) => {
                   return (
-                    <li
-                      key={result}
-                      className='flex items-center gap-[14px] py-1 px-5 hover:bg-stone-200'>
-                      <MagnifyingGlass
-                        size={18}
-                        color={"rgb(92 92 92 / 93%)"}
-                      />
-                      <p className='text-black/90 font-medium'>
-                        <span className='font-normal text-black/75'>
-                          {result.charAt(0)}
-                        </span>
-                        {result.slice(1)}
-                      </p>
+                    <li key={result} className='py-1 px-5 hover:bg-stone-200'>
+                      <Link
+                        to={`/results?q=${
+                          arr.indexOf(result) === i
+                            ? getSearchQueryFormat(result)
+                            : getSearchQueryFormat(input)
+                        }`}
+                        className='flex items-center gap-[14px] '>
+                        <MagnifyingGlass
+                          size={18}
+                          color={"rgb(92 92 92 / 93%)"}
+                        />
+                        <p className='text-black/90 font-medium'>
+                          <span className='font-normal text-black/75'>
+                            {result.charAt(0)}
+                          </span>
+                          {result.slice(1)}
+                        </p>
+                      </Link>
                     </li>
                   );
                 })}

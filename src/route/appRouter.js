@@ -3,6 +3,7 @@ import Watch from "../components/watch-container/Watch";
 import Body from "../components/layout/Body";
 import Subscriptions from "../components/sidebar/Subscriptions";
 import MainContainer from "../components/main-container/MainContainer";
+import Results from "../components/main-container/Results";
 const appRouter = createBrowserRouter([
   {
     path: "/",
@@ -20,6 +21,7 @@ const appRouter = createBrowserRouter([
         path: "/subscriptions",
         element: <Subscriptions />,
       },
+      { path: "/results", element: <Results /> },
     ],
   },
 ]);

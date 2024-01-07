@@ -33,7 +33,7 @@ const VideoCard = ({ info }) => {
   const homePageURL = standard?.url || medium?.url || high?.url;
   const titleTrim = !isHomePage
     ? getTextTrim(title, 0, TITLE_MAX_LENGTH)
-    : getTextTrim(title, 0, 73);
+    : getTextTrim(title, 0, 65);
 
   const handleInfoIconIn = () => {
     setShowIconInfo(true);

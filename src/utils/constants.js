@@ -22,6 +22,7 @@ export const GET_VIDEO_BY_ID_URL = (id) =>
 export const GET_SUBSCRIBER_API_URL = (id) =>
   YOUTUBE_BASEURL("channels") + `id=${id}&key=${YOUTUBE_API_KEY}`;
 
+export const SEARCH_RESULTS_URL = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=surfing&key=${YOUTUBE_API_KEY}`;
 export const SIDE_NAV = [
   {
     heading: null,
@@ -104,4 +105,62 @@ export const SIDE_NAV = [
       },
     ],
   },
+];
+export const COMMENTS = [
+  {
+    name: "Kushi",
+    comment:
+      "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+    replies: [
+      {
+        name: "Rony",
+        comment: "lorem dolor tolant etonal",
+        replies: [
+          {
+            name: "Kushi",
+            comment:
+              " It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+            replies: [],
+          },
+        ],
+      },
+      {
+        name: "Davey",
+        comment:
+          '"de Finibus Bonorum et Malorum" by Cicero are also reproduced in their exact original form',
+        replies: [],
+      },
+    ],
+  },
+  {
+    name: "Rony",
+    comment: "It is a long established fact that a reader",
+    replies: [
+      {
+        name: "Sammy",
+        comment:
+          "here are many variations of passages of Lorem Ipsum available",
+        replies: [],
+      },
+    ],
+  },
+  {
+    name: "Ruby",
+    comment:
+      "The standard chunk of Lorem Ipsum used since the 1500s is below for those interested.",
+    replies: [],
+  },
+  {
+    name: "Tom",
+    comment: "lorem ipsum randon etica",
+    replies: [
+      {
+        name: "Lorena",
+        comment:
+          '"de Finibus Bonorum et Malorum" by Cicero are also in their exact original form',
+        replies: [],
+      },
+    ],
+  },
+  { name: "Sammy", comment: "lorem ipsum randon etica", replies: [] },
 ];
