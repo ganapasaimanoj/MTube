@@ -22,7 +22,8 @@ export const GET_VIDEO_BY_ID_URL = (id) =>
 export const GET_SUBSCRIBER_API_URL = (id) =>
   YOUTUBE_BASEURL("channels") + `id=${id}&key=${YOUTUBE_API_KEY}`;
 
-export const SEARCH_RESULTS_URL = `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=surfing&key=${YOUTUBE_API_KEY}`;
+export const SEARCH_RESULTS_URL = (query) =>
+  `https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=25&q=${query}=${YOUTUBE_API_KEY}`;
 export const SIDE_NAV = [
   {
     heading: null,
@@ -45,7 +46,7 @@ export const SIDE_NAV = [
         id: 5302,
         icon_stroke: "assets/icons/like.svg",
         icon_fill: "assets/icons/like-fill.svg",
-        route: "/liked-videos",
+        route: "/under-progress",
         title: "Liked videos",
       },
     ],
@@ -57,28 +58,28 @@ export const SIDE_NAV = [
         id: 5303,
         icon_stroke: "assets/icons/Trending.svg",
         icon_fill: "assets/icons/Trending-fill.svg",
-        route: "/trending",
+        route: "/under-progress",
         title: "Trending",
       },
       {
         id: 5304,
         icon_stroke: "assets/icons/films.svg",
         icon_fill: "assets/icons/films-fill.svg",
-        route: "/films",
+        route: "/under-progress",
         title: "Films",
       },
       {
         id: 5305,
         icon_stroke: "assets/icons/history.svg",
         icon_fill: "assets/icons/history-fill.svg",
-        route: "/watch-later",
+        route: "/under-progress",
         title: "Watch later",
       },
       {
         id: 5306,
         icon_stroke: "assets/icons/news.svg",
         icon_fill: "assets/icons/news-fill.svg",
-        route: "/news",
+        route: "/under-progress",
         title: "News",
       },
 
@@ -86,21 +87,21 @@ export const SIDE_NAV = [
         id: 5307,
         icon_stroke: "assets/icons/sports.svg",
         icon_fill: "assets/icons/sports-fill.svg",
-        route: "/sports",
+        route: "/under-progress",
         title: "Sports",
       },
       {
         id: 5308,
         icon_stroke: "assets/icons/podcasts.svg",
         icon_fill: "assets/icons/podcasts-fill.svg",
-        route: "/podcasts",
+        route: "/under-progress",
         title: "Podcasts",
       },
       {
         id: 5309,
         icon_stroke: "assets/icons/learning.svg",
         icon_fill: "assets/icons/learning-fill.svg",
-        route: "/learning",
+        route: "/under-progress",
         title: "Learning",
       },
     ],
@@ -164,3 +165,4 @@ export const COMMENTS = [
   },
   { name: "Sammy", comment: "lorem ipsum randon etica", replies: [] },
 ];
+export const OFFSET_LIVE_CHAT = 35;

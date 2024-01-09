@@ -6,7 +6,7 @@ import {
   CaretUp,
 } from "@phosphor-icons/react/dist/ssr";
 import { useState } from "react";
-import generateRandomId from "../../utils/custom-hooks/getRandomId";
+import generateRandomId from "../../utils/helpers/getRandomId";
 
 const Comment = ({ commentData }) => {
   const { name, comment, replies } = commentData;

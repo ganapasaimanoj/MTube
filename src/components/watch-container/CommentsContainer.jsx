@@ -1,5 +1,5 @@
 import { User } from "@phosphor-icons/react";
-import generateRandomId from "../../utils/custom-hooks/getRandomId";
+import generateRandomId from "../../utils/helpers/getRandomId";
 import Comment from "./Comment";
 const CommentsContainer = ({ comments }) => {
   return (

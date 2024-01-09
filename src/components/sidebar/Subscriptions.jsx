@@ -1,5 +1,7 @@
+import UnderProgress from "../layout/UnderProgress";
+
 const Subscriptions = () => {
-  return <div>Subscriptions</div>;
+  return <UnderProgress page={"Subscription"} />;
 };
 
 export default Subscriptions;

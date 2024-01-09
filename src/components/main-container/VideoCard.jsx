@@ -3,12 +3,12 @@ import {
   Television,
   DotOutline,
 } from "@phosphor-icons/react";
-import getTimeformat from "../../utils/custom-hooks/getTimeformat";
-import getDuration from "../../utils/custom-hooks/getDuration";
-import getStatsCount from "../../utils/custom-hooks/getStatsCount";
+import getTimeformat from "../../utils/helpers/getTimeformat";
+import getDuration from "../../utils/helpers/getDuration";
+import getStatsCount from "../../utils/helpers/getStatsCount";
 import { useSelector } from "react-redux";
 import { TITLE_MAX_LENGTH } from "../../utils/constants";
-import getTextTrim from "../../utils/custom-hooks/getTextTrim";
+import getTextTrim from "../../utils/helpers/getTextTrim";
 import { useState } from "react";
 const VideoCard = ({ info }) => {
   const [showIconInfo, setShowIconInfo] = useState(false);

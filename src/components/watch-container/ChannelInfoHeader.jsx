@@ -5,7 +5,7 @@ import {
   DotsThreeOutline,
   ShareFat,
 } from "@phosphor-icons/react";
-import getStatsCount from "../../utils/custom-hooks/getStatsCount";
+import getStatsCount from "../../utils/helpers/getStatsCount";
 
 const ChannelInfoHeader = ({
   title,

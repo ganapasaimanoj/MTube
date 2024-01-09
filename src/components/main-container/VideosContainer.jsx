@@ -1,13 +1,13 @@
 import VideoCard from "./VideoCard";
 import { useSelector } from "react-redux";
-import Shimmer from "../layout/Shimmer";
+import { ShimmerCard } from "../layout/Shimmer";
 import { Link } from "react-router-dom";
 
 const VideosContainer = () => {
   const isMenuOpen = useSelector((store) => store.app.isMenuOpen);
   const videos = useSelector((store) => store.videos.homePageData);
 
-  if (!videos) return <Shimmer />;
+  if (!videos) return <ShimmerCard />;
   return (
     <div
       className={`video-container pb-32 flex flex-wrap ${

@@ -6,7 +6,9 @@ const MainContainer = () => {
   const dispatch = useDispatch();
   useState(() => {
     const unMount = dispatch(setHomePage(true));
-    return () => unMount();
+    return () => {
+      unMount();
+    };
   }, []);
   return (
     <div className='w-full pl-6 py-3 h-screen overflow-y-auto'>

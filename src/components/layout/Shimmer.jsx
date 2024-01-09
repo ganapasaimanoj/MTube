@@ -1,7 +1,5 @@
 import React from "react";
 
-const Shimmer = () => {
+export const ShimmerCard = () => {
   return <div>Shimmer</div>;
 };
-
-export default Shimmer;

@@ -1,7 +1,7 @@
 import { useState } from "react";
-import getStatsCount from "../../utils/custom-hooks/getStatsCount";
-import getTextTrim from "../../utils/custom-hooks/getTextTrim";
-import getTimeFormat from "../../utils/custom-hooks/getTimeformat";
+import getStatsCount from "../../utils/helpers/getStatsCount";
+import getTextTrim from "../../utils/helpers/getTextTrim";
+import getTimeFormat from "../../utils/helpers/getTimeformat";
 import CommentsContainer from "./CommentsContainer";
 import { COMMENTS } from "../../utils/constants";
 const ChannelInfoBody = ({ description, publishedAt, viewCount }) => {

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
-import getCountryCode from "../../utils/custom-hooks/getCountryCode";
+import getCountryCode from "../../utils/helpers/getCountryCode";
 import { setCountryCode } from "../../redux/appSlice";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../sidebar/Sidebar";

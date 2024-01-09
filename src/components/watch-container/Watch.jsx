@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { closeMenu } from "../../redux/appSlice";
 import { useSearchParams } from "react-router-dom";
-import getVideoById from "../../utils/custom-hooks/getVideoById";
+import getVideoById from "../../utils/helpers/getVideoById";
 import WatchLeft from "./WatchLeft";
 import WatchRight from "./WatchRight";
 import { setHomePage, setWatchVideo } from "../../redux/videosSlice";

@@ -14,7 +14,7 @@ import { Link } from "react-router-dom";
 import { GET_VIDEOS_API_URL, SEARCH_URL } from "../../utils/constants";
 import { setHomePageData } from "../../redux/videosSlice";
 import { setCacheResults } from "../../redux/searchCacheSlice";
-import getSearchQueryFormat from "../../utils/custom-hooks/getSearchQueryFormat";
+import getSearchQueryFormat from "../../utils/helpers/getSearchQueryFormat";
 const Header = () => {
   const [input, setInput] = useState("");
   const [searchSuggestions, setSearchSuggestions] = useState([]);
