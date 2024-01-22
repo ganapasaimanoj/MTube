@@ -1,20 +1,7 @@
-import { useDispatch, useSelector } from "react-redux";
-import { useEffect } from "react";
-import getCountryCode from "../../utils/helpers/getCountryCode";
-import { setCountryCode } from "../../redux/appSlice";
 import { Outlet } from "react-router-dom";
 import Sidebar from "../sidebar/Sidebar";
 import Header from "./Header";
 const Body = () => {
-  const dispatch = useDispatch();
-  const countryCode = useSelector((store) => store.app.countryCode);
-  useEffect(() => {
-    const getCode = async () => {
-      const code = await getCountryCode();
-      if (!countryCode) dispatch(setCountryCode(code));
-    };
-    getCode();
-  }, [countryCode, dispatch]);
   return (
     <>
       <Header />

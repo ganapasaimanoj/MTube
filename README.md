@@ -1,70 +1,59 @@
-# Getting Started with Create React App
+# Mtube - YouTube Clone Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
 
-## Available Scripts
+Mtube is a YouTube clone project developed using React, React Redux, JavaScript, and Tailwind CSS. The project leverages the Google YouTube API to fetch video data and replicate various features of the YouTube platform.
 
-In the project directory, you can run:
+Checkout the live link: [https://praneep-mtube.netlify.app/](https://praneep-mtube.netlify.app/)
 
-### `npm start`
+## Tech Stack
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### React:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+A JavaScript library for building user interfaces.
 
-### `npm test`
+### React Redux:
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+State management library for React applications.
 
-### `npm run build`
+### JavaScript:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+The primary programming language used for the project.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Tailwind CSS:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+A utility-first CSS framework for designing responsive and efficient user interfaces.## Features
 
-### `npm run eject`
+## Features
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### 1. Collapsible Hamburger Menu
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The project includes a collapsible hamburger menu, providing a familiar navigation experience for users.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### 2. Search Feature
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- The header contains a search feature with debouncing implemented for query optimization.
+- Google YouTube Search API calls are made to fetch search results.
+- Search results are stored in a global state variable using Redux, optimizing performance and reducing redundant API calls.
 
-## Learn More
+### 3. Video Thumbnails
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+- Video thumbnails are rendered using video data obtained from YouTube API calls.
+- Video data is stored in a global state variable using Redux, ensuring efficient data management and seamless updates.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 4. Inner Page Routes
 
-### Code Splitting
+- Routes to inner pages are implemented using React Router.
+- Each inner page contains a video player, video description, comments, and a chat section.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### 5. Nested Comments
 
-### Analyzing the Bundle Size
+Nested comments are implemented for a more interactive and organized discussion environment.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### 6. Infinite Chat
 
-### Making a Progressive Web App
+The inner page features an infinite chat functionality, enhancing user engagement and interaction.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## Acknowledgments
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Special thanks to the YouTube API for providing the necessary data for this project.

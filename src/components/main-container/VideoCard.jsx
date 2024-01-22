@@ -44,14 +44,16 @@ const VideoCard = ({ info }) => {
   return (
     <div
       className={`video-card ${
-        isMenuOpen ? "max-w-[22rem] " : "max-w-[25rem]"
+        isMenuOpen
+          ? "max-w-[22rem] lg:max-w-[19.8rem]"
+          : "max-w-[25rem] lg:max-w-[21.4rem]"
       } flex ${isHomePage ? "flex-col gap-3" : "gap-[10px] items-start"}`}>
       <div
-        className={` ${
+        className={`rounded-xl ${
           isHomePage
             ? isMenuOpen
-              ? "w-[22rem] h-[12rem] rounded-xl"
-              : "w-[25rem]  h-[13.5rem] rounded-xl"
+              ? "w-[22rem] h-[12rem] lg:max-w-[19.8rem] lg:h-[11.7rem]"
+              : "w-[25rem]  h-[13.5rem] lg:max-w-[21.4rem] lg:h-[11.7rem]"
             : "w-[11rem] h-[6rem] rounded-lg"
         }  overflow-hidden relative`}>
         <img

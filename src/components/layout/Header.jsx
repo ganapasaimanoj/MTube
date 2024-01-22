@@ -9,9 +9,10 @@ import {
 } from "@phosphor-icons/react/dist/ssr";
 import { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleMenu } from "../../redux/appSlice";
 import { Link } from "react-router-dom";
 import { GET_VIDEOS_API_URL, SEARCH_URL } from "../../utils/constants";
+import getCountryCode from "../../utils/helpers/getCountryCode";
+import { setCountryCode, toggleMenu } from "../../redux/appSlice";
 import { setHomePageData } from "../../redux/videosSlice";
 import { setCacheResults } from "../../redux/searchCacheSlice";
 import getSearchQueryFormat from "../../utils/helpers/getSearchQueryFormat";
@@ -38,6 +39,7 @@ const Header = () => {
       console.error(e.message);
     }
   };
+
   const getSearchSuggestions = async () => {
     try {
       const res = await fetch(SEARCH_URL(input));
@@ -48,7 +50,14 @@ const Header = () => {
       console.error(e.message);
     }
   };
+
+  const getCode = async () => {
+    const code = await getCountryCode();
+    if (!countryCode) dispatch(setCountryCode(code));
+  };
+
   useEffect(() => {
+    getCode();
     const timer = setTimeout(() => {
       searchCache[input]
         ? setSearchSuggestions(searchCache[input])
@@ -62,7 +71,7 @@ const Header = () => {
       clearTimeout(timer);
       document.removeEventListener("click", documentClick);
     };
-  }, [input, videos.length]);
+  }, []);
 
   return (
     <header className='w-full header flex justify-between px-5 pt-2 pb-4 '>

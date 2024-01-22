@@ -13,7 +13,6 @@ const getCountryCode = async () => {
 
     const response = await fetch(OPENCAGE_URL);
     const data = await response.json();
-
     const countryComponent =
       data.results && data.results.length > 0
         ? data.results[0].components.country_code.toUpperCase()
@@ -22,7 +21,6 @@ const getCountryCode = async () => {
     return countryComponent;
   } catch (error) {
     console.error("Error fetching geo location:", error);
-    // Handle the error gracefully, maybe throw a custom error or return a specific value.
     return null;
   }
 };
