@@ -4,6 +4,8 @@
 
 Mtube is a YouTube clone project developed using React, React Redux, JavaScript, and Tailwind CSS. The project leverages the Google YouTube API to fetch video data and replicate various features of the YouTube platform.
 
+## Live Link
+
 Checkout the live link: [https://praneep-mtube.netlify.app/](https://praneep-mtube.netlify.app/)
 
 ## Tech Stack
