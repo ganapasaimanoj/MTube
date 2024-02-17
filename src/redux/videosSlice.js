@@ -5,8 +5,14 @@ const videosSlice = createSlice({
     isHomePage: true,
     homePageData: [],
     watchVideo: null,
+    users: [],
   },
   reducers: {
+    fetchUsersSuccess(state, action) {
+      console.log('__fetchUsersSuccess', action.payload);
+      state.users = action.payload;
+    },
+    fetchUsersFail(state, action) {},
     setHomePage(state, action) {
       state.isHomePage = action.payload;
     },
@@ -18,6 +24,6 @@ const videosSlice = createSlice({
     },
   },
 });
-export const { setHomePage, setHomePageData, setWatchVideo } =
+export const { setHomePage, setHomePageData, setWatchVideo, fetchUsersSuccess, fetchUsersFail } =
   videosSlice.actions;
 export default videosSlice.reducer;

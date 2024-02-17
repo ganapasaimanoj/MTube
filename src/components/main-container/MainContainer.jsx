@@ -10,6 +10,7 @@ const MainContainer = () => {
   const className = isMenuOpen ? "gap-x-3" : "gap-x-4";
 
   useEffect(() => {
+    dispatch({ type: 'fetchUsers' });
     dispatch(setHomePage(true));
     return () => {
       dispatch(setHomePage(false));
